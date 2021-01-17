@@ -14,6 +14,11 @@ public class StarMap : MonoBehaviour
     Galaxy galaxy;
     bool canClick = true;
 
+    private void Start() 
+    {
+        instance = this;
+    }
+
     public void Init(Orchestrator orchestrator, Galaxy galaxy)
     {
         this.orchestrator = orchestrator;
@@ -50,4 +55,7 @@ public class StarMap : MonoBehaviour
     }
 
     public void EnableClick(bool enable) => canClick = enable;
+
+    private static StarMap instance;
+    public static Texture[] Textures => instance?.StarColours;
 }

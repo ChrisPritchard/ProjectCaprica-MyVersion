@@ -10,7 +10,6 @@ public class SystemView : MonoBehaviour
 
     public GameObject Star;
     public GameObject[] Planets = new GameObject[Config.MaxPlanets];
-    public Texture[] StarColours; // duplicated - maybe a central 'resource' object to contain these
 
     StarSystem starSystem;
     RenderTexture renderTexture;
@@ -31,7 +30,7 @@ public class SystemView : MonoBehaviour
         this.starSystem = starSystem;
         Title.GetComponent<Text>().text = starSystem.Name;
 
-        Star.GetComponentInChildren<MeshRenderer>().material.mainTexture = StarColours[(int)starSystem.Type];
+        Star.GetComponentInChildren<MeshRenderer>().material.mainTexture = StarMap.Textures[(int)starSystem.Type];
         for (var i = 0; i < starSystem.Planets.Length; i++)
         {
             var exists = starSystem.Planets[i] != null;
