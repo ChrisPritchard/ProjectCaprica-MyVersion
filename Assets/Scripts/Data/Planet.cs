@@ -18,6 +18,7 @@ namespace FleetLords
         public PlanetSize Size { get; set; }
         public PlanetType Type { get; set; }
         public PlanetRichness Richness { get; set; }
+        public int Variant { get; set; } // used for randomisation, e.g. a seed
 
         private List<PlanetTraits> traits;
         private Colony colony;

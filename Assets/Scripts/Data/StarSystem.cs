@@ -29,6 +29,17 @@ namespace FleetLords
                 count++;
                 var planet = new Planet();
                 planet.Name = system.Name + "-"+count;
+                if (i < 2 || (i < 4 && Random.Range(0f, 1f) < 0.5))
+                    planet.Type = PlanetType.Barren;
+                else if (i < 4)
+                    planet.Type = PlanetType.Continental;
+                else if (i < 6 && Random.Range(0f, 1f) < 0.5)
+                    planet.Type = PlanetType.Barren;
+                else
+                    planet.Type = PlanetType.GasGiant;
+                if (planet.Type != PlanetType.GasGiant)
+                    planet.Size = (PlanetSize)Random.Range(0, 5);
+                planet.Variant = Random.Range(0, int.MaxValue);
                 Planets[i] = planet;
             }
         }

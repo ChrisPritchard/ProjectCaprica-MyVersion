@@ -8,6 +8,10 @@ public class SystemView : MonoBehaviour
     public GameObject Title;
     public Camera Camera;
 
+    public Texture[] RockTextures;
+    public Texture[] TerrestrialTextures;
+    public Texture[] GasTextures;
+
     public GameObject Star;
     public GameObject[] Planets = new GameObject[Config.MaxPlanets];
 
@@ -29,12 +33,30 @@ public class SystemView : MonoBehaviour
 
         this.starSystem = starSystem;
         Title.GetComponent<Text>().text = starSystem.Name;
-
         Star.GetComponentInChildren<MeshRenderer>().material.mainTexture = StarMap.Textures[(int)starSystem.Type];
+
         for (var i = 0; i < starSystem.Planets.Length; i++)
         {
-            var exists = starSystem.Planets[i] != null;
-            Planets[i].SetActive(exists);
+            var planet = starSystem.Planets[i];
+            var go = Planets[i];
+            go.SetActive(planet != null);
+            if (planet == null) continue;
+
+            var textures = RockTextures;
+            if (planet.Type == PlanetType.Continental)
+                textures = TerrestrialTextures;
+            else if (planet.Type == PlanetType.GasGiant)
+                textures = GasTextures;
+
+            go.GetComponentInChildren<MeshRenderer>().material.mainTexture = textures[planet.Variant % textures.Length];
+
+            if (planet.Type == PlanetType.GasGiant)
+                go.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+            else
+            {
+                var scale = 0.1f + (int)planet.Size * 0.1f;
+                go.transform.localScale = new Vector3(scale, scale, scale);
+            }
         }
     }
 

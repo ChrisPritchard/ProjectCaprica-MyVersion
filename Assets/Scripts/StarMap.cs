@@ -42,7 +42,7 @@ public class StarMap : MonoBehaviour
 
     private void Update() 
     {
-        if(!canClick || !Input.GetMouseButtonUp(0))
+        if(!canClick || !Input.GetMouseButtonDown(0))
             return;
 
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
