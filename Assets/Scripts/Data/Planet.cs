@@ -3,8 +3,6 @@ namespace FleetLords
 {
     using System.Collections.Generic;
 
-    public class PlanetGraphic { }
-
     public enum PlanetSize { Tiny, Small, Medium, Large, Huge }
 
     public enum PlanetType { Asteroid, GasGiant, Continental, Gaian, Oceanic, Barren, Radiated, Toxic, Desert, Arid, Tundra }
@@ -16,7 +14,6 @@ namespace FleetLords
     public class Planet
     {
         public string Name { get; set; }
-        public PlanetGraphic Graphic { get; set; }
         
         public PlanetSize Size { get; set; }
         public PlanetType Type { get; set; }

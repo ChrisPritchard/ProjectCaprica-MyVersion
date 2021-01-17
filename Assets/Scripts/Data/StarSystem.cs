@@ -1,10 +1,7 @@
 
 namespace FleetLords
 {
-    using System.Collections.Generic;
     using UnityEngine;
-
-    public class StarGraphic { }
 
     public enum StarType { Blue, White, Yellow, Orange, Red }
 
@@ -12,31 +9,28 @@ namespace FleetLords
     {
         public string Name { get; set; }
         public Vector2 Position { get; set; }
-
-        public StarGraphic Graphic { get; set; }
         public StarType Type { get; set; }
 
-        private Planet[] planets;
+        public Planet[] Planets { get; set; }
 
         public StarSystem()
         {
-            planets = new Planet[Config.GetInt("MAX_PLANETS")];
-
-            GeneratePlanets();
-        }
-        public void GeneratePlanets()
-        {
-            
+            Planets = new Planet[Config.MaxPlanets];
         }
 
-        public Planet GetPlanet(int index)
+        public void GeneratePlanets(StarSystem system)
         {
-            if (index < 0 || index > planets.Length)
+            var count = 0;
+            for (var i = 0; i < Planets.Length; i++)
             {
-                return null;
-            }
+                if(Random.Range(0f, 1f) > Config.PlanetChance)
+                    continue;
 
-            return planets[index];
+                count++;
+                var planet = new Planet();
+                planet.Name = system.Name + "-"+count;
+                Planets[i] = planet;
+            }
         }
     }
 }

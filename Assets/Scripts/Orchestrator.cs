@@ -26,6 +26,6 @@ public class Orchestrator : MonoBehaviour
 
     public void CloseStarSystem()
     {
-        starMap.EnableClick(true);
+        starMap.EnableClick(true); // note if this click hits an planet then the planet will immediately open...
     }
 }

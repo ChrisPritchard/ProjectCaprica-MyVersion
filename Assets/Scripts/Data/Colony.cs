@@ -30,7 +30,7 @@ namespace FleetLords
         {
             // Could be improved by traits
 
-            return Config.GetInt("PLANET_MAX_POP_"+Planet.Size.ToString());
+            return ((int)Planet.Size + 1) * 2;
         }
     }
 }

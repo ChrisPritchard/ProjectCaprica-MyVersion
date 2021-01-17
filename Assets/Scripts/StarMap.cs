@@ -19,8 +19,8 @@ public class StarMap : MonoBehaviour
         this.orchestrator = orchestrator;
         this.galaxy = galaxy;
 
-        var rangeX = 8.0F/GalaxyConfig.GalaxyWidth;
-        var rangeY = 4.0F/GalaxyConfig.GalaxyWidth;
+        var rangeX = 8.0F/Config.GalaxyWidth;
+        var rangeY = 4.0F/Config.GalaxyWidth;
         var scale = new Vector3(0.4F, 0.4F, 0.4F);
 
         for(var i = 0; i < galaxy.starSystems.Length; i++)

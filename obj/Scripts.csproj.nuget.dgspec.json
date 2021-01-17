@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\dev\\fleet-lords\\Scripts.csproj": {}
+    "C:\\dev\\fleet-lords\\Scripts.csproj": {}
   },
   "projects": {
-    "c:\\dev\\fleet-lords\\Scripts.csproj": {
+    "C:\\dev\\fleet-lords\\Scripts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\dev\\fleet-lords\\Scripts.csproj",
+        "projectUniqueName": "C:\\dev\\fleet-lords\\Scripts.csproj",
         "projectName": "Scripts",
-        "projectPath": "c:\\dev\\fleet-lords\\Scripts.csproj",
+        "projectPath": "C:\\dev\\fleet-lords\\Scripts.csproj",
         "packagesPath": "C:\\Users\\Christopher\\.nuget\\packages\\",
-        "outputPath": "c:\\dev\\fleet-lords\\obj\\",
+        "outputPath": "C:\\dev\\fleet-lords\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -46,6 +46,10 @@
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
+            },
+            "Unity": {
+              "target": "Package",
+              "version": "[5.11.9, )"
             }
           },
           "imports": [

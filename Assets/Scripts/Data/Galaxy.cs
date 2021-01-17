@@ -3,14 +3,6 @@ namespace FleetLords
 {
     using UnityEngine;
 
-    public static class GalaxyConfig
-    {
-        public static int NumPlayers = 8;
-        public static int NumStars = 50;
-        public static int GalaxyWidth = 100;
-        public static int MinDistance = 20;
-    }
-
     public class Galaxy
     {
         private System.Random baseRandom = new System.Random();
@@ -19,7 +11,7 @@ namespace FleetLords
 
         public void GenerateStarSystems()
         {
-            starSystems = new StarSystem[GalaxyConfig.NumStars];
+            starSystems = new StarSystem[Config.NumStars];
 
             for (var i = 0; i < starSystems.Length; i++)
             {
@@ -27,7 +19,7 @@ namespace FleetLords
                 system.Name = GetStarName();
                 system.Type = GetStarType();
                 system.Position = GetRandomPosition(i-1);
-                system.GeneratePlanets();
+                system.GeneratePlanets(system);
                 starSystems[i] = system;
             }
 
@@ -36,7 +28,7 @@ namespace FleetLords
 
         private Vector2 GetRandomPosition(int soFar)
         {
-            var dim = GalaxyConfig.GalaxyWidth;
+            var dim = Config.GalaxyWidth;
             var candidate = new Vector2(
                 Random.Range(-dim,dim),
                 Random.Range(-dim,dim)
@@ -44,7 +36,7 @@ namespace FleetLords
             for (var i = 0; i <= soFar; i++)
             {
                 var distance = Vector2.Distance(candidate, starSystems[i].Position);
-                if (distance < GalaxyConfig.MinDistance)
+                if (distance < Config.MinDistance)
                 {
                     return GetRandomPosition(soFar);
                 }

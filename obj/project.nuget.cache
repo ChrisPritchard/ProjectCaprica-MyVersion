@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "MLUOUUOXO0j7YU7tytMyFZm1qitLhE1U9fs4IHmG3btSE8WdZc6bE5mDweqiaNarW7Qv1k24unnkRw9IBpXjTA==",
+  "dgSpecHash": "hIo8eOY7CD9ZgCieJ84OjJ1TnTN8O7ZLvSl+HNmgmRfidQF0fzQ11oXuJpx9EJ1tNuJvbl0gDC0RHZ0lcdUdgg==",
   "success": true,
-  "projectFilePath": "c:\\dev\\fleet-lords\\Scripts.csproj",
+  "projectFilePath": "C:\\dev\\fleet-lords\\Scripts.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\Christopher\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\Christopher\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Christopher\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
+    "C:\\Users\\Christopher\\.nuget\\packages\\unity\\5.11.9\\unity.5.11.9.nupkg.sha512"
   ],
   "logs": []
 }
