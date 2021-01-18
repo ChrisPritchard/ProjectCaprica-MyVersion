@@ -43,22 +43,24 @@ public class SystemView : MonoBehaviour
 
             var position = Star.transform.position + new Vector3(0.9f+i*1f,0,0);
             var go = Instantiate(PlanetPrefab, position, Quaternion.identity, Star.transform.parent);
+
             var textures = RockTextures;
             if (planet.Type == PlanetType.Continental)
                 textures = TerrestrialTextures;
             else if (planet.Type == PlanetType.GasGiant)
                 textures = GasTextures;
-
             go.GetComponentInChildren<MeshRenderer>().material.mainTexture = textures[planet.Variant % textures.Length];
 
+            var sphere = go.GetComponentInChildren<Rotate>().transform;
             if (planet.Type == PlanetType.GasGiant)
-                go.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                sphere.localScale = new Vector3(0.8f, 0.8f, 0.8f);
             else
             {
                 var scale = 0.1f + (int)planet.Size * 0.1f;
-                go.transform.localScale = new Vector3(scale, scale, scale);
+                sphere.localScale = new Vector3(scale, scale, scale);
             }
 
+            go.GetComponentInChildren<TMPro.TMP_Text>().text = planet.Name;
             localPlanets.Add(go);
         }
         
