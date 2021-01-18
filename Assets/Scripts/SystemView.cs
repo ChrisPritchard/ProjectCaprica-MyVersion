@@ -1,6 +1,7 @@
 using FleetLords;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class SystemView : MonoBehaviour 
 {
@@ -13,10 +14,12 @@ public class SystemView : MonoBehaviour
     public Texture[] GasTextures;
 
     public GameObject Star;
-    public GameObject[] Planets = new GameObject[Config.MaxPlanets];
+    public GameObject PlanetPrefab;
 
     StarSystem starSystem;
     RenderTexture renderTexture;
+
+    List<GameObject> localPlanets = new List<GameObject>();
 
     private void Start() 
     {
@@ -29,8 +32,6 @@ public class SystemView : MonoBehaviour
 
     public void Show(StarSystem starSystem)
     {
-        this.gameObject.SetActive(true);
-
         this.starSystem = starSystem;
         Title.GetComponent<Text>().text = starSystem.Name;
         Star.GetComponentInChildren<MeshRenderer>().material.mainTexture = StarMap.Textures[(int)starSystem.Type];
@@ -38,10 +39,10 @@ public class SystemView : MonoBehaviour
         for (var i = 0; i < starSystem.Planets.Length; i++)
         {
             var planet = starSystem.Planets[i];
-            var go = Planets[i];
-            go.SetActive(planet != null);
             if (planet == null) continue;
 
+            var position = Star.transform.position + new Vector3(0.9f+i*1f,0,0);
+            var go = Instantiate(PlanetPrefab, position, Quaternion.identity, Star.transform.parent);
             var textures = RockTextures;
             if (planet.Type == PlanetType.Continental)
                 textures = TerrestrialTextures;
@@ -57,12 +58,19 @@ public class SystemView : MonoBehaviour
                 var scale = 0.1f + (int)planet.Size * 0.1f;
                 go.transform.localScale = new Vector3(scale, scale, scale);
             }
+
+            localPlanets.Add(go);
         }
+        
+        this.gameObject.SetActive(true);
     }
 
     public void OnClose()
     {
         this.gameObject.SetActive(false);
+        foreach(var go in localPlanets)
+            Destroy(go);
+        localPlanets.Clear();
         orchestrator.CloseStarSystem();
     }
 }
