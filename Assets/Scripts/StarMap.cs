@@ -36,7 +36,7 @@ public class StarMap : MonoBehaviour
             go.transform.localScale = scale;
             go.GetComponent<StarInfo>().StarIndex = i;
             go.GetComponentInChildren<MeshRenderer>().material.mainTexture = StarColours[(int)star.Type];
-            go.GetComponentInChildren<Text>().text = star.Name;
+            go.GetComponentInChildren<TMPro.TMP_Text>().text = star.Name;
         }
     }
 
