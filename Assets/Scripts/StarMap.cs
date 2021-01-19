@@ -45,7 +45,7 @@ public class StarMap : MonoBehaviour
         if(!canClick || !Input.GetMouseButtonDown(0))
             return;
 
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        var ray = Orchestrator.MainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, StarsLayer))
         {
             var index = hitInfo.collider.GetComponentInParent<StarInfo>().StarIndex;

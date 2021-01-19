@@ -15,11 +15,12 @@ public class SystemView : MonoBehaviour
 
     public GameObject Star;
     public GameObject PlanetPrefab;
+    public GameObject TextPrefab;
 
     StarSystem starSystem;
     RenderTexture renderTexture;
 
-    List<GameObject> localPlanets = new List<GameObject>();
+    List<GameObject> whileOpen = new List<GameObject>();
 
     private void Start() 
     {
@@ -35,14 +36,16 @@ public class SystemView : MonoBehaviour
         this.starSystem = starSystem;
         Title.GetComponent<Text>().text = starSystem.Name;
         Star.GetComponentInChildren<MeshRenderer>().material.mainTexture = StarMap.Textures[(int)starSystem.Type];
+        
+        var canvas = GetComponentInChildren<Canvas>();
 
         for (var i = 0; i < starSystem.Planets.Length; i++)
         {
             var planet = starSystem.Planets[i];
             if (planet == null) continue;
 
-            var position = Star.transform.position + new Vector3(0.9f+i*1f,0,0);
-            var go = Instantiate(PlanetPrefab, position, Quaternion.identity, Star.transform.parent);
+            var planetPosition = Star.transform.position + new Vector3(0.9f+i*1f,0,0);
+            var go = Instantiate(PlanetPrefab, planetPosition, Quaternion.identity, Star.transform.parent);
 
             var textures = RockTextures;
             if (planet.Type == PlanetType.Continental)
@@ -60,8 +63,12 @@ public class SystemView : MonoBehaviour
                 sphere.localScale = new Vector3(scale, scale, scale);
             }
 
-            go.GetComponentInChildren<TMPro.TMP_Text>().text = planet.Name;
-            localPlanets.Add(go);
+            var textPos = Orchestrator.MainCamera.WorldToScreenPoint(planetPosition) + new Vector3(0f, -20f, 0f);
+            var text = Instantiate(TextPrefab, textPos, Quaternion.identity, canvas.transform);
+            text.GetComponent<TMPro.TMP_Text>().text = planet.Name;
+
+            whileOpen.Add(go);
+            whileOpen.Add(text);
         }
         
         this.gameObject.SetActive(true);
@@ -70,9 +77,9 @@ public class SystemView : MonoBehaviour
     public void OnClose()
     {
         this.gameObject.SetActive(false);
-        foreach(var go in localPlanets)
+        foreach(var go in whileOpen)
             Destroy(go);
-        localPlanets.Clear();
+        whileOpen.Clear();
         orchestrator.CloseStarSystem();
     }
 }

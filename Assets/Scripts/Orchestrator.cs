@@ -9,8 +9,12 @@ public class Orchestrator : MonoBehaviour
     public StarMap starMap;
     public SystemView systemView;
 
+    public static Camera MainCamera;
+
     private void Start() 
     {
+        MainCamera = Camera.main;
+
         galaxy = new Galaxy();
         galaxy.GenerateStarSystems();
 
