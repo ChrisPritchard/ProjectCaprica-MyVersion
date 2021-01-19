@@ -63,7 +63,7 @@ public class SystemView : MonoBehaviour
                 sphere.localScale = new Vector3(scale, scale, scale);
             }
 
-            var textPos = Orchestrator.MainCamera.WorldToScreenPoint(planetPosition) + new Vector3(0f, -20f, 0f);
+            var textPos = canvas.transform.position+new Vector3(-219f+i*104f, -70f, 0f);
             var text = Instantiate(TextPrefab, textPos, Quaternion.identity, canvas.transform);
             text.GetComponent<TMPro.TMP_Text>().text = planet.Name;
 
